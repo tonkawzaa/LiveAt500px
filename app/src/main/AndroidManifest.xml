@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tonkaw_zaa.liveat500px">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:name=".MainApplication">
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4e7d7e34fedb8718f04c5f70b95e2ed79764089e" />
+
+        <meta-data android:name="com.tonkaw_zaa.liveat500px.configuration.GlideConfiguration"
+            android:value="GlideModule"/>
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>
