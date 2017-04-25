@@ -125,6 +125,7 @@ public class PhotoListItem extends BaseCustomViewGroup {
         // TODO : Load Image
         Glide.with(getContext())
                 .load(url)
+                .placeholder(R.drawable.loading)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivImg);
     }
