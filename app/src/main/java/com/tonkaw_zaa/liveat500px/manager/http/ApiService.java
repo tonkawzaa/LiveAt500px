@@ -18,4 +18,8 @@ public interface ApiService {
     @Multipart
     @POST("list/after/{id}")
     Call<PhotoItemCollectionDao> loadPhotoListAfterId(@Part("id") int id);
+
+    @Multipart
+    @POST("list/before/{id}")
+    Call<PhotoItemCollectionDao> loadPhotoListBeforeId(@Part("id") int id);
 }
