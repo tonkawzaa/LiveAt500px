@@ -154,7 +154,6 @@ public class MainFragment extends Fragment {
                     photoListManager.setDao(dao);
                 }
 
-
                 listAdapter.setDao(photoListManager.getDao());
                 listAdapter.notifyDataSetChanged();
 
@@ -219,10 +218,10 @@ public class MainFragment extends Fragment {
         if(isLoadingMore)
             return;
         isLoadingMore = true;
-        int nimId = photoListManager.getMaximumId();
+        int minId = photoListManager.getMinimunId();
         Call<PhotoItemCollectionDao> call = HttpManager.getInstance()
                 .getService()
-                .loadPhotoListBeforeId(nimId);
+                .loadPhotoListBeforeId(minId);
         call.enqueue(
                 new PhotoListLoadCallback(PhotoListLoadCallback.MODE_LOAD_MORE));
     }
