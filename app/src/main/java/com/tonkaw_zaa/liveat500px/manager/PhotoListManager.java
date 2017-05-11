@@ -1,6 +1,7 @@
 package com.tonkaw_zaa.liveat500px.manager;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.tonkaw_zaa.liveat500px.dao.PhotoItemCollectionDao;
@@ -82,5 +83,15 @@ public class PhotoListManager {
         if (dao.getData() == null)
             return 0;
         return dao.getData().size();
+    }
+
+    public Bundle onSaveInstanceState(){
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("dao", dao);
+        return bundle;
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+        dao = savedInstanceState.getParcelable("dao");
     }
 }
