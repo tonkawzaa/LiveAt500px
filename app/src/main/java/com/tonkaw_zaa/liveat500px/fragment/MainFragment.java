@@ -25,6 +25,9 @@ import com.tonkaw_zaa.liveat500px.datatype.MutableInteger;
 import com.tonkaw_zaa.liveat500px.manager.HttpManager;
 import com.tonkaw_zaa.liveat500px.manager.PhotoListManager;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -89,6 +92,20 @@ public class MainFragment extends Fragment {
     private void init(Bundle savedInstanceState) {
         photoListManager = new PhotoListManager();
         lastPositionInteger = new MutableInteger(-1);
+
+        File dir = getContext().getDir("Hello", Context.MODE_PRIVATE);
+        Log.d("Storage", String.valueOf(dir));
+        File file = new File(dir, "testfile.txt");
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write("hello".getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void initInstances(View rootView, Bundle savedInstanceState) {
