@@ -93,7 +93,7 @@ public class MainFragment extends Fragment {
         photoListManager = new PhotoListManager();
         lastPositionInteger = new MutableInteger(-1);
 
-        File dir = getContext().getDir("Hello", Context.MODE_PRIVATE);
+        File dir = getContext().getCacheDir();
         Log.d("Storage", String.valueOf(dir));
         File file = new File(dir, "testfile.txt");
         try {
