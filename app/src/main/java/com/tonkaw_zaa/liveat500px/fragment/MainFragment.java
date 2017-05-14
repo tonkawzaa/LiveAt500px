@@ -94,15 +94,7 @@ public class MainFragment extends Fragment {
         photoListManager = new PhotoListManager();
         lastPositionInteger = new MutableInteger(-1);
 
-        SharedPreferences prefs = getContext().getSharedPreferences("dummy",
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
 
-        // Add/Edit/Delete
-        editor.putString("Hello", "World");
-        editor.apply();
-
-//        String value = prefs.getString("Hello", null);
     }
 
     private void initInstances(View rootView, Bundle savedInstanceState) {
