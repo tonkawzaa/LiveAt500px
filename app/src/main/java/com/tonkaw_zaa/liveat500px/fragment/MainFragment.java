@@ -25,6 +25,7 @@ import com.tonkaw_zaa.liveat500px.R;
 import com.tonkaw_zaa.liveat500px.activity.MoreInfoActivity;
 import com.tonkaw_zaa.liveat500px.adapter.PhotoListAdapter;
 import com.tonkaw_zaa.liveat500px.dao.PhotoItemCollectionDao;
+import com.tonkaw_zaa.liveat500px.dao.PhotoItemDao;
 import com.tonkaw_zaa.liveat500px.datatype.MutableInteger;
 import com.tonkaw_zaa.liveat500px.manager.HttpManager;
 import com.tonkaw_zaa.liveat500px.manager.PhotoListManager;
@@ -45,6 +46,10 @@ import retrofit2.Response;
 public class MainFragment extends Fragment {
 
     // Variables
+
+    public interface FragmentListener{
+        void onPhotoItemClicked(PhotoItemDao dao);
+    }
     boolean isLoadingMore = false;
 
     ListView listView;
@@ -269,9 +274,11 @@ public class MainFragment extends Fragment {
     final AdapterView.OnItemClickListener listViewItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getContext(),
-                    MoreInfoActivity.class);
-            startActivity(intent);
+            if(position <photoListManager.getCount()) {
+                PhotoItemDao dao = photoListManager.getDao().getData().get(position);
+                FragmentListener listener = (FragmentListener) getActivity();
+                listener.onPhotoItemClicked(dao);
+            }
         }
     };
 
