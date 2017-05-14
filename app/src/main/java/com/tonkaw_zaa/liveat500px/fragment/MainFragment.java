@@ -1,6 +1,7 @@
 package com.tonkaw_zaa.liveat500px.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -93,19 +94,15 @@ public class MainFragment extends Fragment {
         photoListManager = new PhotoListManager();
         lastPositionInteger = new MutableInteger(-1);
 
-        File dir = getContext().getCacheDir();
-        Log.d("Storage", String.valueOf(dir));
-        File file = new File(dir, "testfile.txt");
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write("hello".getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SharedPreferences prefs = getContext().getSharedPreferences("dummy",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
 
+        // Add/Edit/Delete
+        editor.putString("Hello", "World");
+        editor.apply();
+
+//        String value = prefs.getString("Hello", null);
     }
 
     private void initInstances(View rootView, Bundle savedInstanceState) {
