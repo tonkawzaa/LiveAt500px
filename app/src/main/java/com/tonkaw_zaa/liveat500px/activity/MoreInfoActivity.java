@@ -2,6 +2,7 @@ package com.tonkaw_zaa.liveat500px.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tonkaw_zaa.liveat500px.R;
@@ -39,5 +40,11 @@ public class MoreInfoActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_more_info, menu);
+        return true;
     }
 }
