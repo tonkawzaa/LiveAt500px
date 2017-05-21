@@ -6,7 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tonkaw_zaa.liveat500px.R;
 import com.tonkaw_zaa.liveat500px.dao.PhotoItemDao;
 
@@ -17,6 +21,9 @@ import com.tonkaw_zaa.liveat500px.dao.PhotoItemDao;
 public class PhotoSummaryFragment extends Fragment {
 
     PhotoItemDao dao;
+    ImageView ivImg;
+    TextView tvName;
+    TextView tvDesctiption;
 
     public PhotoSummaryFragment() {
         super();
@@ -59,6 +66,17 @@ public class PhotoSummaryFragment extends Fragment {
         // Init 'View' instance(s) with rootView.findViewById here
         // Note: State of variable initialized here could not be saved
         //       in onSavedInstanceState
+        ivImg = (ImageView)rootView.findViewById(R.id.ivImg);
+        tvName = (TextView)rootView.findViewById(R.id.tvName);
+        tvDesctiption = (TextView)rootView.findViewById(R.id.tvDesctiption);
+
+        tvName.setText(dao.getCaption());
+        tvDesctiption.setText(dao.getUserName() + "\n" + dao.getCamera());
+        Glide.with(PhotoSummaryFragment.this)
+                .load(dao.getImageUrl())
+                .placeholder(R.drawable.loading)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(ivImg);
     }
 
     @Override
